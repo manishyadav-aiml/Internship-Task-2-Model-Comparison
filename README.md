@@ -1,53 +1,262 @@
 # AI & ML Task 2: Feature Engineering, Model Optimization & Performance Comparison
 
-Compares several regression models on the **California Housing** dataset, selects the best one with an objective rule and explains why. Builds on the Task 1 House Price Predictor.
+This project compares multiple regression algorithms on the **California Housing Dataset** to predict house prices. It focuses on feature engineering, model optimization, performance evaluation, and selecting the best-performing model using an objective selection rule.
 
-## Deliverables checklist
-| Required item | File | Created by |
+This project builds on **Task 1: House Price Predictor** by exploring optimized regression models and comparing their generalization performance.
+
+---
+
+## Deliverables Checklist
+
+| Deliverable | File | Status |
 |---|---|---|
-| Jupyter notebook | `AI_ML_Task2_Model_Comparison.ipynb` | included |
-| Model performance comparison table | shown in notebook section 7 and saved as `model_comparison_table.csv`; also in the PDF | running the notebook |
-| 1-2 page PDF (methodology, results, conclusions) | `AI_ML_Task2_Report.pdf` | running the notebook (last section) |
-| *Optional:* best model saved with joblib | `models/best_model.pkl` | running the notebook |
-| *Optional:* extra charts and insights | `figures/` (comparison, train vs test R², actual vs predicted, permutation importance, correlation heatmap) | running the notebook |
+| Jupyter Notebook | `AI_ML_Task2_Model_Comparison.ipynb` | Completed |
+| Model Performance Comparison | `model_comparison_table.csv` | Completed |
+| PDF Project Report | `AI_ML_Task2_Report.pdf` | Completed |
+| Best Trained Model | `models/best_model.pkl` | Optional |
+| Visualization Charts | `figures/` | Additional |
 
-## How to run (about 2 minutes)
+---
+
+## Technologies Used
+
+- Python
+- Jupyter Notebook
+- NumPy
+- Pandas
+- Matplotlib
+- Seaborn
+- Scikit-learn
+- Joblib
+
+---
+
+## Project Structure
+
+```text
+Task-2-Model-Comparison/
+│
+├── AI_ML_Task2_Model_Comparison.ipynb
+├── AI_ML_Task2_Report.pdf
+├── model_comparison_table.csv
+├── results.json
+├── requirements.txt
+├── housing_utils.py
+├── generate_report_task2.py
+│
+├── models/
+│   └── best_model.pkl
+│
+├── figures/
+│   ├── actual_vs_predicted.png
+│   ├── correlation_heatmap.png
+│   ├── feature_importance.png
+│   ├── feature_scales.png
+│   ├── model_comparison.png
+│   └── train_vs_test_r2.png
+│
+└── data/
+    └── california_housing.csv
+```
+
+---
+
+## Installation and Execution
+
+### 1. Clone the Repository
+
 ```bash
-python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-jupyter notebook AI_ML_Task2_Model_Comparison.ipynb      # Kernel -> Restart & Run All
+git clone <repository-url>
 ```
-The first run needs internet once to download the dataset (a CSV copy is then saved in `data/`). Save the notebook **with its outputs** before submitting or pushing it to GitHub.
 
-## What is in the notebook
-1. Imports, 2. Load data, 3. Quick data check (why scaling matters), 4. Features and target, 5. Split then scale, 6. Train models, 7. Evaluation and comparison table, 8. Visual validation, 9. Model selection and joblib, 10. Export and PDF, 11. Conclusions.
+Navigate to the Task 2 folder:
 
-**Models compared (9)**
-* Stage A (required): Linear Regression, Ridge (alpha = 1.0), Decision Tree (max_depth = 5)
-* Stage B (optimisation): Ridge with tuned alpha, Decision Tree tuned with GridSearchCV, Linear Regression and Ridge with engineered features, plus Random Forest and Gradient Boosting as stronger references
-
-**Metrics:** RMSE (primary), MAE, R², 5-fold cross-validated RMSE, and the overfit gap (train R² minus test R²).
-**Selection rule:** the model with the lowest cross-validated RMSE on the training data is selected, so the test set is never used to choose. The notebook and PDF print the justification from your own numbers.
-
-## Two improvements over the sample code in the task sheet
-1. **Split first, then scale.** The sample scales all the data before splitting, which leaks test-set statistics into training. Here `StandardScaler` sits inside a `Pipeline` and is fitted on the training data only.
-2. **No `squared=False`.** This argument was removed from `mean_squared_error` in recent scikit-learn versions and raises an error. The notebook uses `np.sqrt(mean_squared_error(...))`, which works in every version.
-
-## Files
+```bash
+cd Internship-Machine-Learning-Tasks/Task-2-Model-Comparison
 ```
-AI_ML_Task2_Model_Comparison.ipynb   main notebook
-housing_utils.py                     feature engineering helper (needed to load saved models)
-generate_report_task2.py             builds the PDF from results.json and figures/
-requirements.txt
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv .venv
 ```
+
+### 3. Activate the Virtual Environment
+
+**Windows PowerShell:**
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+**Windows Command Prompt:**
+
+```cmd
+.venv\Scripts\activate.bat
+```
+
+**Linux / macOS:**
+
+```bash
+source .venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 5. Launch Jupyter Notebook
+
+```bash
+python -m notebook AI_ML_Task2_Model_Comparison.ipynb
+```
+
+Open the notebook and select:
+
+**Kernel → Restart & Run All**
+
+Run all cells and save the notebook with outputs.
+
+**Note:** An internet connection is required during the first run to download the dataset. A local CSV copy is saved in the `data/` directory for subsequent runs.
+
+---
+
+## Project Workflow
+
+The notebook follows these stages:
+
+1. Import required libraries.
+2. Load the California Housing dataset.
+3. Perform exploratory data analysis.
+4. Examine feature distributions and scaling requirements.
+5. Separate features and target variables.
+6. Split the dataset into training and testing sets.
+7. Apply feature scaling and engineering.
+8. Train and optimize regression models.
+9. Evaluate and compare model performance.
+10. Visualize predictions and model performance.
+11. Select and save the best-performing model.
+12. Export results and generate the PDF report.
+
+---
+
+## Models Compared
+
+The project evaluates nine model configurations:
+
+1. Linear Regression
+2. Ridge Regression (Alpha = 1.0)
+3. Decision Tree Regressor (Max Depth = 5)
+4. Ridge Regression with tuned alpha
+5. Decision Tree Regressor with GridSearchCV optimization
+6. Linear Regression with engineered features
+7. Ridge Regression with engineered features
+8. Random Forest Regressor
+9. Gradient Boosting Regressor
+
+The models are evaluated to understand the impact of feature engineering, regularization, and hyperparameter optimization on predictive performance.
+
+---
+
+## Evaluation Metrics
+
+The following metrics are used:
+
+| Metric | Purpose |
+|---|---|
+| RMSE | Measures prediction error; primary evaluation metric |
+| MAE | Measures average absolute prediction error |
+| R² Score | Measures how well the model explains target variation |
+| 5-Fold Cross-Validation RMSE | Evaluates model consistency across training-data folds |
+| Overfitting Gap | Measures the difference between training and testing R² |
+
+### Model Selection Strategy
+
+The final model is selected using the **lowest 5-fold cross-validation RMSE on the training data**.
+
+The test dataset is not used during model selection. This helps provide a more reliable estimate of how the selected model generalizes to unseen data.
+
+The notebook and PDF report contain the actual evaluation results and explain the final selection.
+
+---
+
+## Improvements Over the Sample Implementation
+
+### 1. Prevention of Data Leakage
+
+The dataset is split before scaling.
+
+`StandardScaler` is placed inside a Scikit-learn Pipeline, ensuring that scaling parameters are learned only from the training data.
+
+This prevents information from the test dataset from influencing the training process.
+
+### 2. Scikit-learn Compatibility
+
+Instead of using:
+
+```python
+mean_squared_error(y_true, y_pred, squared=False)
+```
+
+The notebook calculates RMSE using:
+
+```python
+np.sqrt(mean_squared_error(y_true, y_pred))
+```
+
+This avoids compatibility issues with newer Scikit-learn versions.
+
+---
+
+## Results and Visualizations
+
+The project generates the following outputs:
+
+- Model performance comparison
+- Training vs. testing R² comparison
+- Actual vs. predicted values
+- Feature importance analysis
+- Feature scaling comparison
+- Correlation heatmap
+
+The detailed performance comparison is available in:
+
+- `model_comparison_table.csv`
+- `AI_ML_Task2_Report.pdf`
+
+---
 
 ## Troubleshooting
-| Problem | Fix |
+
+| Problem | Solution |
 |---|---|
-| Dataset download fails | connect to the internet once; afterwards `data/california_housing.csv` is used |
-| `ModuleNotFoundError: housing_utils` | run Jupyter from this folder |
-| PDF is not created | check that the last notebook cell ran without errors; or run `python generate_report_task2.py` after the notebook |
-| Loading `best_model.pkl` fails after upgrading scikit-learn | re-run the notebook to retrain |
+| Dataset download fails | Check your internet connection. |
+| `ModuleNotFoundError: housing_utils` | Run Jupyter Notebook from the Task 2 project directory. |
+| PDF report is not generated | Check whether the final notebook cells completed successfully. |
+| Best model cannot be loaded | Check the Scikit-learn version and retrain the model if necessary. |
+| Missing Python packages | Run `python -m pip install -r requirements.txt`. |
+
+---
 
 ## Limitations
-1990 census block-group averages and a price capped at $500,000. This is a learning project, not a valuation tool.
+
+- The dataset is based on 1990 California census block-group information.
+- House values are capped at $500,000 in the dataset.
+- Historical data may not represent current housing market conditions.
+- This project is intended for educational and machine learning practice, not professional property valuation.
+
+---
+
+## Author
+
+**Manish Yadav**
+
+GitHub: [manishyadav-aiml](https://github.com/manishyadav-aiml)
+
+---
+
+## Project Status
+
+Completed — Internship Task 2.
