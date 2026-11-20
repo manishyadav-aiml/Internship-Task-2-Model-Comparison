@@ -251,7 +251,7 @@ The detailed performance comparison is available in:
 
 ## Author
 
-**Manish Yadav**
+**Manish Kumar Yadav**
 
 GitHub: [manishyadav-aiml](https://github.com/manishyadav-aiml)
 
