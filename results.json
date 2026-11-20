@@ -1,0 +1,146 @@
+{
+  "dataset": {
+    "rows": 20640,
+    "features": [
+      "MedInc",
+      "HouseAge",
+      "AveRooms",
+      "AveBedrms",
+      "Population",
+      "AveOccup",
+      "Latitude",
+      "Longitude"
+    ],
+    "target": "HousePrice"
+  },
+  "split": {
+    "train": 16512,
+    "test": 4128,
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "comparison": [
+    {
+      "name": "Linear Regression",
+      "stage": "A required",
+      "family": "linear",
+      "best_params": "",
+      "train_r2": 0.6125511913966952,
+      "mae": 0.5332001304956565,
+      "rmse": 0.7455813830127764,
+      "r2": 0.5757877060324508,
+      "cv_rmse": 0.7205095145054943,
+      "gap": 0.03676348536424445,
+      "fit_s": 0.28760719997808337
+    },
+    {
+      "name": "Ridge Regression (alpha=1.0)",
+      "stage": "A required",
+      "family": "linear",
+      "best_params": "",
+      "train_r2": 0.6125511218634558,
+      "mae": 0.5331931195789734,
+      "rmse": 0.7455567442814779,
+      "r2": 0.5758157428913684,
+      "cv_rmse": 0.7205090731464324,
+      "gap": 0.03673537897208745,
+      "fit_s": 0.16064120002556592
+    },
+    {
+      "name": "Decision Tree (max_depth=5)",
+      "stage": "A required",
+      "family": "tree",
+      "best_params": "",
+      "train_r2": 0.6376786573648903,
+      "mae": 0.5222592972077786,
+      "rmse": 0.7242338143386247,
+      "r2": 0.5997321244428706,
+      "cv_rmse": 0.722727161750474,
+      "gap": 0.03794653292201966,
+      "fit_s": 0.9405907000182196
+    },
+    {
+      "name": "Ridge (tuned alpha)",
+      "stage": "B optimised",
+      "family": "linear",
+      "best_params": "alpha=3.16",
+      "train_r2": 0.6125504985762247,
+      "mae": 0.533179244986032,
+      "rmse": 0.7455040164175709,
+      "r2": 0.5758757397703372,
+      "cv_rmse": 0.7205088107791665,
+      "gap": 0.03667475880588744,
+      "fit_s": 7.739883900037967
+    },
+    {
+      "name": "Decision Tree (tuned)",
+      "stage": "B optimised",
+      "family": "tree",
+      "best_params": "max_depth=12, min_samples_leaf=20",
+      "train_r2": 0.8037179452422035,
+      "mae": 0.40601910693097476,
+      "rmse": 0.6006116018106088,
+      "r2": 0.7247162510182454,
+      "cv_rmse": 0.6153899165028491,
+      "gap": 0.07900169422395809,
+      "fit_s": 5.126175100042019
+    },
+    {
+      "name": "Linear Regression + features",
+      "stage": "B optimised",
+      "family": "linear",
+      "best_params": "",
+      "train_r2": 0.6861861941984295,
+      "mae": 0.4775178941206411,
+      "rmse": 0.6619741794602105,
+      "r2": 0.6655930922724032,
+      "cv_rmse": 0.6620068472657058,
+      "gap": 0.02059310192602637,
+      "fit_s": 0.5678028999827802
+    },
+    {
+      "name": "Ridge + features",
+      "stage": "B optimised",
+      "family": "linear",
+      "best_params": "alpha=31.6",
+      "train_r2": 0.6854586119146917,
+      "mae": 0.478125370478624,
+      "rmse": 0.6621409491293836,
+      "r2": 0.6654245782850841,
+      "cv_rmse": 0.6610731728745562,
+      "gap": 0.02003403362960765,
+      "fit_s": 3.0720017999992706
+    },
+    {
+      "name": "Random Forest",
+      "stage": "B reference",
+      "family": "ensemble",
+      "best_params": "",
+      "train_r2": 0.958890530793894,
+      "mae": 0.32596642329138925,
+      "rmse": 0.5037412644320735,
+      "r2": 0.8063541491967899,
+      "cv_rmse": 0.5095943929383896,
+      "gap": 0.15253638159710403,
+      "fit_s": 67.08520159998443
+    },
+    {
+      "name": "Gradient Boosting (Hist)",
+      "stage": "B reference",
+      "family": "ensemble",
+      "best_params": "",
+      "train_r2": 0.8799449134272723,
+      "mae": 0.3110552128758936,
+      "rmse": 0.4653991953632404,
+      "r2": 0.8347108310143663,
+      "cv_rmse": 0.47360252028955135,
+      "gap": 0.04523408241290605,
+      "fit_s": 11.698555700015277
+    }
+  ],
+  "baseline": "Linear Regression",
+  "ridge_required": "Ridge Regression (alpha=1.0)",
+  "tree_required": "Decision Tree (max_depth=5)",
+  "best_overall": "Gradient Boosting (Hist)",
+  "best_linear": "Ridge + features"
+}

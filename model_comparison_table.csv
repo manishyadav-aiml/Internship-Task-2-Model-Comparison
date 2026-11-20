@@ -1,0 +1,10 @@
+name,Stage,Train R2,Test MAE,Test RMSE,Test R2,CV RMSE,Overfit gap,Fit time (s),Best params
+Gradient Boosting (Hist),B reference,0.8799,0.3111,0.4654,0.8347,0.4736,0.0452,11.6986,
+Random Forest,B reference,0.9589,0.326,0.5037,0.8064,0.5096,0.1525,67.0852,
+Decision Tree (tuned),B optimised,0.8037,0.406,0.6006,0.7247,0.6154,0.079,5.1262,"max_depth=12, min_samples_leaf=20"
+Linear Regression + features,B optimised,0.6862,0.4775,0.662,0.6656,0.662,0.0206,0.5678,
+Ridge + features,B optimised,0.6855,0.4781,0.6621,0.6654,0.6611,0.02,3.072,alpha=31.6
+Decision Tree (max_depth=5),A required,0.6377,0.5223,0.7242,0.5997,0.7227,0.0379,0.9406,
+Ridge (tuned alpha),B optimised,0.6126,0.5332,0.7455,0.5759,0.7205,0.0367,7.7399,alpha=3.16
+Ridge Regression (alpha=1.0),A required,0.6126,0.5332,0.7456,0.5758,0.7205,0.0367,0.1606,
+Linear Regression,A required,0.6126,0.5332,0.7456,0.5758,0.7205,0.0368,0.2876,
